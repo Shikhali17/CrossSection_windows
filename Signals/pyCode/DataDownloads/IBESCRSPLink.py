@@ -49,6 +49,8 @@ def enforce_column_schema(df: pd.DataFrame, columns: List[str]) -> pd.DataFrame:
 
 
 def main() -> None:
+    import os, sys
+    from utils.wrds_engine import get_wrds_engine
     load_dotenv()
 
     print("Processing CRSP-IBES linking data...")
@@ -62,9 +64,16 @@ def main() -> None:
         raise RuntimeError("WRDS credentials not found in environment variables.")
 
     print("Querying IBES-CRSP link from WRDS database...")
+    
+    sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+    
+    engine = get_wrds_engine()
+    """
     engine = create_engine(
         f"postgresql://{username}:{password}@wrds-pgdata.wharton.upenn.edu:9737/wrds"
     )
+    """
 
     query = """
         SELECT ticker, permno, ncusip, sdate, edate, score

@@ -214,7 +214,7 @@ def save_error_log(error_log, console_log):
     error_log.to_csv(csv_path, index=False)
     
     # Save detailed console output to txt file
-    with open(txt_path, 'w') as f:
+    with open(txt_path, "w", encoding="utf-8", errors="replace") as f:
         f.write('\n'.join(console_log))
         f.write(f"\n\nLog completed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
   

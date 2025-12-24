@@ -20,9 +20,17 @@ from config import MAX_ROWS_DL
 
 load_dotenv()
 
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+from utils.wrds_engine import get_wrds_engine
+engine = get_wrds_engine()
+
+"""
 engine = create_engine(
     f"postgresql://{os.getenv('WRDS_USERNAME')}:{os.getenv('WRDS_PASSWORD')}@wrds-pgdata.wharton.upenn.edu:9737/wrds"
 )
+"""
 
 QUERY = """
 SELECT a.permno, a.distcd, a.exdt, a.acperm

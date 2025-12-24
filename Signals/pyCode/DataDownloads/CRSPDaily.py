@@ -40,10 +40,18 @@ def get_crsp_daily_year(year, engine):
 # Main processing - download CRSP daily data
 print("Starting CRSP Daily data download...")
 
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+from utils.wrds_engine import get_wrds_engine
+engine = get_wrds_engine()
+
+"""
 # Setup database connection
 engine = create_engine(
     f"postgresql://{os.getenv('WRDS_USERNAME')}:{os.getenv('WRDS_PASSWORD')}@wrds-pgdata.wharton.upenn.edu:9737/wrds"
 )
+"""
 
 # Determine year range for download (debug mode downloads only 1932, production mode downloads 1926-current)
 current_year = datetime.now().year

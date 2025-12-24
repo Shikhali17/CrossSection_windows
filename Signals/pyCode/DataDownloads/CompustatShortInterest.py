@@ -24,10 +24,18 @@ from config import MAX_ROWS_DL
 
 load_dotenv()
 
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+from utils.wrds_engine import get_wrds_engine
+engine = get_wrds_engine()
+
+"""
 # Database connection setup
 engine = create_engine(
     f"postgresql://{os.getenv('WRDS_USERNAME')}:{os.getenv('WRDS_PASSWORD')}@wrds-pgdata.wharton.upenn.edu:9737/wrds"
 )
+"""
 
 def _build_query(source: Literal["legacy", "new"]) -> str:
     table = "comp.sec_shortint_legacy" if source == "legacy" else "comp.sec_shortint"

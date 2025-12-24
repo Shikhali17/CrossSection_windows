@@ -34,6 +34,12 @@ load_dotenv()
 print("Downloading CIQ Credit Ratings...")
 print("Warning: this can take ~5 minutes to run.")
 
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+from utils.wrds_engine import get_wrds_engine
+engine = get_wrds_engine()
+"""
 # Create SQLAlchemy engine with timeouts
 engine = create_engine(
     f"postgresql://{os.getenv('WRDS_USERNAME')}:{os.getenv('WRDS_PASSWORD')}@wrds-pgdata.wharton.upenn.edu:9737/wrds",
@@ -42,6 +48,7 @@ engine = create_engine(
         "options": "-c statement_timeout=300000"  # 5 minute query timeout
     }
 )
+"""
 
 # Ensure directories exist
 os.makedirs("../pyData/Intermediate", exist_ok=True)

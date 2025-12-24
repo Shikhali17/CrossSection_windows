@@ -24,9 +24,17 @@ load_dotenv()
 # Load OptionMetrics linking data from WRDS database
 print("Downloading OptionMetrics-CRSP linking data from WRDS...")
 
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+from utils.wrds_engine import get_wrds_engine
+engine = get_wrds_engine()
+
+"""
 engine = create_engine(
     f"postgresql://{os.getenv('WRDS_USERNAME')}:{os.getenv('WRDS_PASSWORD')}@wrds-pgdata.wharton.upenn.edu:9737/wrds"
 )
+"""
 
 # Query WRDS database for OptionMetrics linking data
 QUERY = """

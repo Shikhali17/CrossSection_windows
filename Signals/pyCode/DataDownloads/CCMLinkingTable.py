@@ -15,6 +15,7 @@ import os
 import pandas as pd
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
+import urllib.parse
 
 # Display script header
 print("=" * 60, flush=True)
@@ -25,9 +26,17 @@ print("=" * 60, flush=True)
 load_dotenv()
 
 # Create database connection to WRDS
+
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+from utils.wrds_engine import get_wrds_engine
+engine = get_wrds_engine()
+"""
 engine = create_engine(
     f"postgresql://{os.getenv('WRDS_USERNAME')}:{os.getenv('WRDS_PASSWORD')}@wrds-pgdata.wharton.upenn.edu:9737/wrds"
 )
+"""
 
 # SQL query to download CRSP-Compustat linking table with primary links only
 QUERY = """

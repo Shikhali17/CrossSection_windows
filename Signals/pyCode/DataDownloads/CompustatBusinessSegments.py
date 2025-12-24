@@ -26,10 +26,18 @@ print("=" * 60, flush=True)
 # Load environment variables for database connection
 load_dotenv()
 
+import os, sys
+sys.path.append(os.path.join(os.path.dirname(__file__), ".."))
+
+from utils.wrds_engine import get_wrds_engine
+engine = get_wrds_engine()
+
+"""
 # Create database connection to WRDS
 engine = create_engine(
     f"postgresql://{os.getenv('WRDS_USERNAME')}:{os.getenv('WRDS_PASSWORD')}@wrds-pgdata.wharton.upenn.edu:9737/wrds"
 )
+"""
 
 # Define SQL query to extract business segment data
 QUERY = """
