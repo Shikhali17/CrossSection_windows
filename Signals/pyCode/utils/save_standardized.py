@@ -49,7 +49,7 @@ def save_predictor(df, predictor_name, output_dir="../pyData/Predictors"):
         df_save = df.clone()
     
     # Clean up - drop if predictor value is missing (equivalent to: drop if `1' == .)
-    df_save = df_save.filter(pl.col(predictor_name).is_not_null())
+    #df_save = df_save.filter(pl.col(predictor_name).is_not_null())
     
     # Convert time_avail_m to yyyymm format (replicating Stata date conversion)
     # gen yyyymm = year(dofm(time_avail_m))*100 + month(dofm(time_avail_m))
