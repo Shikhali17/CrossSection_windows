@@ -17,6 +17,7 @@ Outputs:
 """
 
 import pandas as pd
+import numpy as np
 
 # DATA LOAD
 signal_master = pd.read_parquet(
@@ -30,7 +31,7 @@ signal_master = signal_master[~signal_master["gvkey"].isna()].copy()
 # Load and prepare quarterly Compustat data
 qcompustat = pd.read_parquet(
     "../pyData/Intermediate/m_QCompustat.parquet",
-    columns=["gvkey", "time_avail_m", "atq", "ibq"],
+    columns=["gvkey", "time_avail_m", "atq", "ibq",'datadateq','rdq'],
 )
 
 # Merge quarterly data - only keep observations available in both datasets
@@ -52,6 +53,7 @@ df = pd.merge(df, df_lag, on=["permno", "time_lag3"], how="left")
 # Calculate quarterly return on assets: quarterly income divided by lagged assets
 df["roaq"] = df["ibq"] / df["atq_lag3"]
 
+df["roaq"].replace([np.inf, -np.inf], np.nan, inplace=True)
 # Drop missing values
 df = df.dropna(subset=["roaq"])
 
@@ -60,6 +62,7 @@ df["yyyymm"] = df["time_avail_m"].dt.year * 100 + df["time_avail_m"].dt.month
 
 # Keep required columns and order
 df = df[["permno", "yyyymm", "roaq"]].copy()
+
 
 # SAVE
 df.to_csv("../pyData/Predictors/roaq.csv", index=False)

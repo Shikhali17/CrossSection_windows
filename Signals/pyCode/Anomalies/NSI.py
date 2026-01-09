@@ -37,7 +37,7 @@ df["yyyymm"] = (
 
 # Keep required columns
 df = df[["permno", "yyyymm", "NSI"]].copy()
-
+df["NSI"].replace([np.inf, -np.inf], np.nan, inplace=True)
 # Convert to integers where appropriate
 df["permno"] = df["permno"].astype(int)
 df["yyyymm"] = df["yyyymm"].astype(int)
