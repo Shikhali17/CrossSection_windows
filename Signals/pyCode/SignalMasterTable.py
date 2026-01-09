@@ -1,5 +1,5 @@
 # ABOUTME: Creates the "backbone" used in most predictors.
-# ABOUTME: Incorporates basic info from monthly CRSP and annual Compustat.
+# ABOUTME: Incorporates basic info from monthly CRSP and annual Compustat..
 """
 Inputs:
     - monthlyCRSP.parquet
@@ -49,6 +49,7 @@ print("Filtering for common stocks and major exchanges...")
 df = df[(df['shrcd'].isin([10, 11, 12])) & (df['exchcd'].isin([1, 2, 3]))].copy()
 
 print(f"After filtering: {df.shape[0]} rows")
+
 
 # Merge with Compustat monthly data
 print("Merging with m_aCompustat...")
