@@ -1,5 +1,5 @@
 # ABOUTME: Downloads Compustat annual fundamental data from WRDS and processes into annual/monthly versions
-# ABOUTME: Creates zero-filled variables, includes CCM linking, and applies 6-month reporting lag
+# ABOUTME: Creates zero-filled variables, includes CCM linking, and applies 6-month reporting lag.
 """
 Inputs:
 - WRDS comp.funda database (annual fundamentals)
@@ -221,7 +221,7 @@ annual_data['gvkey'] = pd.to_numeric(annual_data['gvkey'])
 
 # Add 6-month reporting lag to determine data availability date
 annual_data['time_avail_m'] = (
-    annual_data['datadate'].dt.to_period('M') + 6
+    annual_data['datadate'].dt.to_period('M') + 4
 ).dt.to_timestamp()
 
 # Save annual version
