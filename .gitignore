@@ -28,6 +28,14 @@ Signals/Data/*
 Signals/pyData/*
 Shipping/Data/* 
 
+# Keep folder structure
+!Results/.gitkeep
+!Portfolios/Data/.gitkeep
+!Portfolios/pyData/.gitkeep
+!Signals/Data/.gitkeep
+!Signals/pyData/.gitkeep
+!Shipping/Data/.gitkeep
+
 # Credentials
 .env
 
